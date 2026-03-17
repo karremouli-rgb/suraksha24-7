@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Suraksha 24/7 – One Tap Can Save Lives</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== LOGIN PAGE ===== -->
+<div id="loginPage" class="auth-page">
+  <div class="auth-bg-text">SURAKSHA</div>
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">🚨</div>
+      <div>
+        <div class="auth-logo-text">SURAKSHA <span>24/7</span></div>
+        <span class="auth-logo-sub">One Tap Can Save Lives</span>
+      </div>
+    </div>
+    <h2 class="auth-title">Welcome back</h2>
+    <p class="auth-sub">Sign in to access emergency services</p>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="loginEmail" placeholder="you@example.com"/>
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPassword" placeholder="••••••••"/>
+    </div>
+    <button class="btn-primary" onclick="doLogin()">Sign In →</button>
+    <div class="auth-switch">Don't have an account? <a onclick="showSignup()">Create one</a></div>
+  </div>
+</div>
+
+<!-- ===== SIGNUP PAGE ===== -->
+<div id="signupPage" class="auth-page hidden">
+  <div class="auth-bg-text">REGISTER</div>
+  <div class="auth-card">
+    <div class="auth-logo">
+      <div class="auth-logo-icon">🛡️</div>
+      <div>
+        <div class="auth-logo-text">SURAKSHA <span>24/7</span></div>
+        <span class="auth-logo-sub">Create your safety profile</span>
+      </div>
+    </div>
+    <h2 class="auth-title">Create account</h2>
+    <p class="auth-sub">Your details help us respond faster in emergencies</p>
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="su_name" placeholder="Arjun Sharma"/>
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="tel" id="su_phone" placeholder="+91 98765 43210"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" id="su_email" placeholder="arjun@example.com"/>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="su_password" placeholder="••••••••"/>
+      </div>
+      <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" id="su_password2" placeholder="••••••••"/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Gender</label>
+        <select id="su_gender">
+          <option value="">Select</option>
+          <option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Age</label>
+        <input type="number" id="su_age" placeholder="25" min="1" max="120"/>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Date of Birth</label>
+        <input type="date" id="su_dob"/>
+      </div>
+      <div class="form-group">
+        <label>Blood Group</label>
+        <select id="su_blood">
+          <option value="">Select</option>
+          <option>A+</option><option>A-</option><option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option><option>AB+</option><option>AB-</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Emergency Contact Name & Phone</label>
+      <input type="text" id="su_emergency" placeholder="Priya Sharma – +91 98765 11111"/>
+    </div>
+    <div class="form-group">
+      <label>Preferred Language</label>
+      <select id="su_lang">
+        <option value="en">English</option>
+        <option value="hi">Hindi (हिन्दी)</option>
+        <option value="te">Telugu (తెలుగు)</option>
+        <option value="ta">Tamil (தமிழ்)</option>
+        <option value="mr">Marathi (मराठी)</option>
+        <option value="es">Spanish</option>
+      </select>
+    </div>
+    <button class="btn-primary" onclick="doSignup()">Create Account →</button>
+    <div class="auth-switch">Already have an account? <a onclick="showLogin()">Sign in</a></div>
+  </div>
+</div>
+
+<!-- ===== MAIN APP ===== -->
+<div id="app" class="app">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-logo">SURAKSHA <span>24/7</span></div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <div class="topbar-lang">
+        <select id="langSelect" onchange="changeLanguage(this.value)">
+          <option value="en">🌐 English</option>
+          <option value="hi">🌐 हिन्दी</option>
+          <option value="te">🌐 తెలుగు</option>
+          <option value="ta">🌐 தமிழ்</option>
+        </select>
+      </div>
+      <div class="topbar-user">
+        <div class="topbar-avatar" id="userInitials">AS</div>
+        <span id="userName">Arjun</span>
+      </div>
+      <button class="btn-logout" onclick="doLogout()">Logout</button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-badge">LIVE EMERGENCY SYSTEM</div>
+      <h1>One Tap Can<br/><span>Save Lives</span> 🚨</h1>
+      <p>Select your emergency, press SOS, and help will be dispatched immediately. Available 24/7 across India.</p>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="main">
+
+    <!-- SERVICES -->
+    <div class="section-title">Select Emergency Type</div>
+    <div class="services-grid" id="servicesGrid">
+      <!-- populated by JS -->
+    </div>
+
+    <!-- SOS -->
+    <div class="section-title" id="sosLabel">Emergency SOS</div>
+    <div class="sos-section">
+      <p class="sos-label" id="sosHint">Select a service above, then press SOS</p>
+      <div class="sos-btn-wrap">
+        <div class="sos-ring"></div>
+        <div class="sos-ring"></div>
+        <div class="sos-ring"></div>
+        <button class="sos-btn" id="sosBtn" onclick="triggerSOS()">
+          <span class="sos-btn-text">SOS</span>
+          <span class="sos-btn-sub">EMERGENCY</span>
+        </button>
+      </div>
+      <div class="sos-messages" id="sosMessages"></div>
+      <div class="sos-progress" id="sosProgress">
+        <div class="sos-progress-bar" id="sosProgressBar"></div>
+      </div>
+      <div class="sos-confirm" id="sosConfirm">
+        <div class="sos-confirm-icon">✅</div>
+        <p>Help is arriving soon!</p>
+        <span id="confirmDetails">Emergency services have been dispatched to your location.</span>
+      </div>
+    </div>
+
+    <!-- FIRST AID (conditional) -->
+    <div class="first-aid" id="firstAidSection">
+      <div class="first-aid-header">
+        <span class="fa-icon">🩹</span>
+        <div>
+          <h3>First Aid Guide</h3>
+          <p>Simple steps while help is on the way</p>
+        </div>
+      </div>
+      <div class="fa-grid">
+        <div class="fa-item"><span class="fi-icon">🩸</span><div><div class="fi-title">Bleeding</div><div class="fi-desc">Press cloth firmly on wound. Do not remove.</div></div></div>
+        <div class="fa-item"><span class="fi-icon">🔥</span><div><div class="fi-title">Burns</div><div class="fi-desc">Cool with clean water for 10 minutes.</div></div></div>
+        <div class="fa-item"><span class="fi-icon">🦴</span><div><div class="fi-title">Fracture</div><div class="fi-desc">Do NOT move the limb. Keep still.</div></div></div>
+        <div class="fa-item"><span class="fi-icon">😵</span><div><div class="fi-title">Fainting</div><div class="fi-desc">Lay flat, lift legs above heart level.</div></div></div>
+        <div class="fa-item"><span class="fi-icon">💓</span><div><div class="fi-title">Heart Attack</div><div class="fi-desc">Sit down, loosen clothing, stay calm.</div></div></div>
+        <div class="fa-item"><span class="fi-icon">🌡️</span><div><div class="fi-title">Choking</div><div class="fi-desc">Lean forward, 5 firm back blows.</div></div></div>
+      </div>
+    </div>
+
+    <!-- ALERT SIMULATION -->
+    <div class="alert-sim" id="alertSim">
+      <h4>📡 Alert Status — Dispatching Now</h4>
+      <div id="alertItems"></div>
+    </div>
+
+    <!-- QUICK CALLS -->
+    <div class="section-title">Quick Emergency Calls</div>
+    <div class="quick-calls">
+      <a class="quick-call-btn" href="tel:102" style="--btn-color:#E8344A;--btn-bg:#FFF1F2;">
+        <span class="qc-icon">🚑</span>
+        <span class="qc-label">Ambulance</span>
+        <span class="qc-num">102</span>
+      </a>
+      <a class="quick-call-btn" href="tel:100" style="--btn-color:#1B4FD8;--btn-bg:#EFF6FF;">
+        <span class="qc-icon">🚔</span>
+        <span class="qc-label">Police</span>
+        <span class="qc-num">100</span>
+      </a>
+      <a class="quick-call-btn" href="tel:101" style="--btn-color:#EA580C;--btn-bg:#FFF7ED;">
+        <span class="qc-icon">🚒</span>
+        <span class="qc-label">Fire</span>
+        <span class="qc-num">101</span>
+      </a>
+      <a class="quick-call-btn" href="tel:1091" style="--btn-color:#DB2777;--btn-bg:#FDF2F8;">
+        <span class="qc-icon">👩</span>
+        <span class="qc-label">Women Helpline</span>
+        <span class="qc-num">1091</span>
+      </a>
+      <a class="quick-call-btn" href="tel:108" style="--btn-color:#0D9488;--btn-bg:#F0FDFA;">
+        <span class="qc-icon">🏥</span>
+        <span class="qc-label">Medical Emergency</span>
+        <span class="qc-num">108</span>
+      </a>
+      <a class="quick-call-btn" href="tel:112" style="--btn-color:#7C3AED;--btn-bg:#F5F3FF;">
+        <span class="qc-icon">📞</span>
+        <span class="qc-label">National Emergency</span>
+        <span class="qc-num">112</span>
+      </a>
+    </div>
+
+    <!-- LOCATION -->
+    <div class="section-title">Your Location</div>
+    <div class="location-card">
+      <div class="location-header">
+        <h3>📍 Real-Time GPS Tracking</h3>
+        <div class="loc-badge" id="locBadge">Tap to locate</div>
+      </div>
+      <div class="map-container">
+        <div class="map-placeholder" id="mapPlaceholder">
+          <span class="map-icon">🗺️</span>
+          <span>Your location map will appear here</span>
+        </div>
+        <iframe id="mapFrame" class="map-iframe hidden" src="" allowfullscreen></iframe>
+      </div>
+      <div class="location-coords" id="locationCoords">Coordinates: —</div>
+      <br/>
+      <button class="btn-locate" onclick="getLocation()">📍 Get My Location</button>
+    </div>
+
+    <!-- NEARBY SERVICES -->
+    <div class="nearby-section" id="nearbySection" style="display:none;">
+      <div class="section-title">Nearby Emergency Services</div>
+      <div class="nearby-list" id="nearbyList"></div>
+    </div>
+
+    <!-- SAFETY MODULES -->
+    <div class="section-title">Safety Modules</div>
+    <div class="safety-modules">
+      <div class="modules-tabs">
+        <button class="module-tab active" onclick="switchModule('women',this)">👩 Women Safety</button>
+        <button class="module-tab" onclick="switchModule('pregnancy',this)">🤱 Pregnancy</button>
+        <button class="module-tab" onclick="switchModule('elder',this)">👴 Elder Safety</button>
+        <button class="module-tab" onclick="switchModule('highway',this)">🛣️ Highway</button>
+      </div>
+
+      <div class="module-content active" id="mod-women">
+        <h4>👩 Women Safety</h4>
+        <div class="module-steps">
+          <div class="module-step"><span class="step-icon">🚨</span><div class="step-text"><span class="step-title">Quick SOS</span>Press SOS button above — police and women helpline 1091 are alerted immediately.</div></div>
+          <div class="module-step"><span class="step-icon">📍</span><div class="step-text"><span class="step-title">Share Location</span>Your GPS location is automatically shared with emergency contacts and police.</div></div>
+          <div class="module-step"><span class="step-icon">🏪</span><div class="step-text"><span class="step-title">Stay Safe</span>Move to crowded public areas, shops, or any well-lit place with people around.</div></div>
+          <div class="module-step"><span class="step-icon">📱</span><div class="step-text"><span class="step-title">Shake to Alert</span>In the real app — shake phone 3 times to silently send SOS without unlocking.</div></div>
+        </div>
+      </div>
+
+      <div class="module-content" id="mod-pregnancy">
+        <h4>🤱 Pregnancy Emergency</h4>
+        <div class="module-steps">
+          <div class="module-step"><span class="step-icon">⚠️</span><div class="step-text"><span class="step-title">Warning Signs</span>Severe pain, bleeding, dizziness, reduced fetal movement, or high fever.</div></div>
+          <div class="module-step"><span class="step-icon">🏥</span><div class="step-text"><span class="step-title">Immediate Action</span>Press SOS → Nearest maternity hospital is alerted and ambulance dispatched.</div></div>
+          <div class="module-step"><span class="step-icon">🧘</span><div class="step-text"><span class="step-title">Stay Calm</span>Lie down on your left side. Breathe slowly. Do not drive yourself.</div></div>
+          <div class="module-step"><span class="step-icon">📋</span><div class="step-text"><span class="step-title">Share Records</span>Upload pregnancy records in profile — shared automatically with hospital on SOS.</div></div>
+        </div>
+      </div>
+
+      <div class="module-content" id="mod-elder">
+        <h4>👴 Elder Safety</h4>
+        <div class="module-steps">
+          <div class="module-step"><span class="step-icon">🤸</span><div class="step-text"><span class="step-title">Fall Detection (Simulated)</span>App detects sudden impact via phone sensors and sends alert if no response in 30s.</div></div>
+          <div class="module-step"><span class="step-icon">👨‍👩‍👧</span><div class="step-text"><span class="step-title">Emergency Contacts</span>Family members are instantly notified with location when SOS is pressed.</div></div>
+          <div class="module-step"><span class="step-icon">💊</span><div class="step-text"><span class="step-title">Medical Info</span>Blood group and medical conditions stored in profile — shared with responders.</div></div>
+          <div class="module-step"><span class="step-icon">📞</span><div class="step-text"><span class="step-title">One-Tap Call</span>Large SOS button designed for ease — one touch alerts all emergency contacts.</div></div>
+        </div>
+      </div>
+
+      <div class="module-content" id="mod-highway">
+        <h4>🛣️ Highway Emergency</h4>
+        <div class="module-steps">
+          <div class="module-step"><span class="step-icon">⛽</span><div class="step-text"><span class="step-title">No Petrol</span>Nearby petrol stations shown on map. Request fuel delivery service.</div></div>
+          <div class="module-step"><span class="step-icon">🔧</span><div class="step-text"><span class="step-title">Vehicle Breakdown</span>Roadside assistance notified. Tow truck location shared with you.</div></div>
+          <div class="module-step"><span class="step-icon">🚦</span><div class="step-text"><span class="step-title">Traffic Police</span>Highway patrol alerted automatically to your GPS position.</div></div>
+          <div class="module-step"><span class="step-icon">🌙</span><div class="step-text"><span class="step-title">Night Safety</span>Turn on hazard lights. Stay inside vehicle if dark. Help is on the way.</div></div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+
+  <footer class="footer">
+    <strong>Suraksha 24/7</strong> — One Tap Can Save Lives &nbsp;|&nbsp; Available 24x7 &nbsp;|&nbsp;
+    <strong>National Emergency: 112</strong>
+  </footer>
+
+</div><!-- /app -->
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="js/app.js"></script>
+</body>
+</html>
